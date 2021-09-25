@@ -16,7 +16,7 @@ import emailjs from "emailjs-com";
 //Renders copyrights
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {"Copyright © "}
       <Link color="inherit" href="/dashboard">
         Your Website
@@ -146,7 +146,7 @@ function ContactMe() {
               </Alert>
             </div>
           )}
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+           <form className={classes.form} novalidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -157,7 +157,6 @@ function ContactMe() {
               name="name"
               autoComplete="Type your name..."
               inputRef={nameRef}
-              autoFocus
               className={classes.text}
             />
             <TextField
