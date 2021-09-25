@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Theme } from "../Themes/Theme";
+import emailjs from "emailjs-com";
 
 //Renders copyrights
 function Copyright() {
@@ -114,17 +115,17 @@ function ContactMe() {
   const [loading, setLoading] = useState(false);
 
   //Handles sign up using auth provider
-  async function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      setError("");
-      setLoading(true);
-    } catch (err) {
-      console.log(err);
-      setError("Failed to create an account");
-    }
-    setLoading(false);
-  }
+
+    emailjs.sendForm('service_ni5sust', 'template_0m544xh', e.target, 'user_JlLhx7BgxzPcaUc4Z9YCo')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset();
+  };
 
   //Renders all components
   return (
@@ -177,12 +178,12 @@ function ContactMe() {
               margin="normal"
               required
               fullWidth
-              name="intro"
-              label="Introduction"
-              type="intro"
-              id="intro"
+              name="message"
+              label="Message For Me?"
+              type="message"
+              id="message"
               inputRef={introRef}
-              autoComplete="Want to Introduce Yourself?"
+              autoComplete="Message"
               className={classes.text}
             />
             <Button
